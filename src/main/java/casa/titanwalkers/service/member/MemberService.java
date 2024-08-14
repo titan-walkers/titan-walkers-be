@@ -1,8 +1,9 @@
 package casa.titanwalkers.service.member;
 
 import casa.titanwalkers.domain.member.Member;
-import casa.titanwalkers.domain.member.dto.SigninDto;
 import casa.titanwalkers.domain.member.dto.SigninRequest;
+import casa.titanwalkers.domain.member.dto.TokenDto;
+import casa.titanwalkers.jwt.TokenProvider;
 import casa.titanwalkers.repository.member.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -12,12 +13,13 @@ import org.springframework.stereotype.Service;
 public class MemberService {
 
     private final MemberRepository memberRepository;
+    private final TokenProvider tokenProvider;
 
-    public SigninDto signin(SigninRequest signinRequest) {
+    public TokenDto signin(SigninRequest signinRequest) {
 
         Member member = memberRepository.findByEmail(signinRequest.email())
                 .orElseThrow(RuntimeException::new);
 
-        return SigninDto.of(member.getEmail());
+        return tokenProvider.generateToken(member);
     }
 }
