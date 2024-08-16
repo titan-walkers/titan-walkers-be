@@ -34,7 +34,8 @@ public class TokenProvider {
 
         // claims 커스텀
         Map<String, String> claims = new HashMap<>();
-        claims.put("memberName", member.getEmail());
+        claims.put("nickname", member.getNickname());
+        claims.put("email", member.getEmail());
 
         String accessToken = Jwts.builder()
                 .setClaims(claims)
