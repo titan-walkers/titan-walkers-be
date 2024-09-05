@@ -37,4 +37,10 @@ public class SwaggerConfiguration {
         return GroupedOpenApi.builder().group("member").pathsToMatch(paths).build();
     }
 
+    @Bean
+    public GroupedOpenApi mailOpenApi() {
+        String[] paths = { "/v1/mail/**" };
+        return GroupedOpenApi.builder().group("mail").pathsToMatch(paths).build();
+    }
+
 }
