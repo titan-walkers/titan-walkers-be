@@ -4,8 +4,10 @@ import io.swagger.v3.oas.annotations.media.Schema;
 
 import java.time.ZonedDateTime;
 
-public record ReceivedMail(
-        @Schema(description = "발신자 이메일", example = "test@tatian.casa")
+public record SearchMail(
+        @Schema(description = "메일 아이디", example = "1")
+        Long id,
+        @Schema(description = "이메일", example = "test@tatian.casa")
         String email,
         @Schema(description = "제목", example = "title")
         String title,
